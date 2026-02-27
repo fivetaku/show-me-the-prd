@@ -25,7 +25,7 @@ Inspect `$ARGUMENTS` to determine the action:
 
 | Argument Pattern | Action | Skill |
 |-----------------|--------|-------|
-| `[아이디어 설명]` | 인터뷰 시작하여 PRD 생성 | show-me-the-prd-main |
+| `[아이디어 설명]` | 인터뷰 시작하여 PRD 생성 | show-me-the-prd |
 | (no argument) | 인터랙티브 메뉴 표시 | See below |
 
 ## No Argument Provided
@@ -59,8 +59,8 @@ When no argument is provided, present the following interactive menu using `AskU
 ```
 
 After user selection:
-- **새 프로젝트 기획** -> Ask for one-sentence idea if not provided, then invoke show-me-the-prd-main skill
-- **기존 기획 보강** -> Ask user to share their existing document, then invoke show-me-the-prd-main skill in enhancement mode (skip Step 1, start from gap analysis)
+- **새 프로젝트 기획** -> Ask for one-sentence idea if not provided, then invoke show-me-the-prd skill
+- **기존 기획 보강** -> Ask user to share their existing document, then invoke show-me-the-prd skill in enhancement mode (skip Step 1, start from gap analysis)
 - **사용법 안내** -> Explain in plain Korean:
   1. 한 문장으로 아이디어를 말하면 인터뷰가 시작됨
   2. 5-6번의 질문에 답하면 4종 문서가 완성됨
@@ -69,7 +69,7 @@ After user selection:
 
 ## Execute
 
-Once the action is determined, follow the show-me-the-prd-main skill's execution flow.
+Once the action is determined, follow the show-me-the-prd skill's execution flow.
 
 Skill content is located at:
-- `${CLAUDE_PLUGIN_ROOT}/skills/show-me-the-prd-main/SKILL.md` -- 7단계 인터뷰 기반 PRD 생성 워크플로우
+- `${CLAUDE_PLUGIN_ROOT}/skills/show-me-the-prd/SKILL.md` -- 7단계 인터뷰 기반 PRD 생성 워크플로우

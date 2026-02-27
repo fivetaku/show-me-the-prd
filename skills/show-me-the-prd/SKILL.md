@@ -1,5 +1,5 @@
 ---
-name: show-me-the-prd-main
+name: show-me-the-prd
 description: 인터뷰 기반 PRD 생성 스킬. "/show-me-the-prd", "PRD 만들어줘", "기획서 만들어줘", "쇼미더피알디", "앱 기획해줘", "서비스 기획" 같은 요청에 사용됩니다. 바이브코더를 위해 한 문장 아이디어에서 4종 디자인 문서(PRD, 데이터 모델, Phase 분리, 프로젝트 스펙)를 생성합니다.
 ---
 
@@ -26,7 +26,7 @@ description: 인터뷰 기반 PRD 생성 스킬. "/show-me-the-prd", "PRD 만들
 | 열린 질문 최소화 | 첫 질문(뭘 만들고 싶어?) 하나만 열린 질문, 나머지 전부 선택형 |
 | 기타 옵션 불필요 | AskUserQuestion이 자동으로 "Other" 제공 |
 
-상세 인터뷰 방법론: `${CLAUDE_PLUGIN_ROOT}/skills/show-me-the-prd-main/references/interview-guide.md`
+상세 인터뷰 방법론: `${CLAUDE_PLUGIN_ROOT}/skills/show-me-the-prd/references/interview-guide.md`
 
 ---
 
@@ -99,7 +99,7 @@ WebSearch: "{도메인} 앱 필수 기능"
 
 리서치 결과를 Step 2의 기능 목록 선택지에 반영한다.
 
-리서치 도구 선택 전략: `${CLAUDE_PLUGIN_ROOT}/skills/show-me-the-prd-main/references/research-strategy.md`
+리서치 도구 선택 전략: `${CLAUDE_PLUGIN_ROOT}/skills/show-me-the-prd/references/research-strategy.md`
 
 ---
 
@@ -284,7 +284,7 @@ PRD/
 └── README.md                    # 네비게이션 가이드
 ```
 
-각 문서의 템플릿과 섹션 구조: `${CLAUDE_PLUGIN_ROOT}/skills/show-me-the-prd-main/references/document-templates.md`
+각 문서의 템플릿과 섹션 구조: `${CLAUDE_PLUGIN_ROOT}/skills/show-me-the-prd/references/document-templates.md`
 
 **문서 생성 시 규칙**:
 - 모든 기술 선택에 "왜 이걸 골랐는지" 근거 포함 (리서치 결과 인용)
@@ -334,7 +334,7 @@ PRD/
 
 ## References
 
-Refer to `${CLAUDE_PLUGIN_ROOT}/skills/show-me-the-prd-main/references/` for detailed documentation:
+Refer to `${CLAUDE_PLUGIN_ROOT}/skills/show-me-the-prd/references/` for detailed documentation:
 
 | Reference | Purpose |
 |-----------|---------|
