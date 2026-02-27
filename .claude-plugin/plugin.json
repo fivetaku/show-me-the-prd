@@ -1,6 +1,6 @@
 {
   "name": "show-me-the-prd",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Interview-driven PRD generator for vibe coders — from one sentence to 4 design documents",
   "author": {
     "name": "fivetaku",
