@@ -1,0 +1,21 @@
+{
+  "name": "show-me-the-prd",
+  "version": "0.1.0",
+  "description": "Interview-driven PRD generator for vibe coders — from one sentence to 4 design documents",
+  "author": {
+    "name": "fivetaku",
+    "url": "https://github.com/fivetaku"
+  },
+  "homepage": "https://github.com/fivetaku/show-me-the-prd",
+  "repository": "https://github.com/fivetaku/show-me-the-prd",
+  "license": "MIT",
+  "keywords": [
+    "prd",
+    "product-requirements",
+    "vibe-coding",
+    "interview",
+    "design-document",
+    "data-model",
+    "phase-planning"
+  ]
+}
