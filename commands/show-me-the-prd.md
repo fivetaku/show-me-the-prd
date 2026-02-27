@@ -8,7 +8,6 @@ allowed-tools:
   - Write
   - WebSearch
   - WebFetch
-  - Task
   - Glob
   - Grep
   - Bash

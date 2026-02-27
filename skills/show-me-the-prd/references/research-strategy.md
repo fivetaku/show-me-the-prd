@@ -19,11 +19,11 @@ Phase 0에서 자동 확인. 유저에게 묻지 않고 내부적으로 기억.
 
 ```
 확인 방법:
-1. Glob: ~/.claude/plugins/docs-guide/.claude-plugin/plugin.json
-2. Glob: ~/.claude/plugins/deep-research/.claude-plugin/plugin.json
+사용 가능한 스킬 목록에 docs-guide, deep-research가 있는지 확인.
+있으면 Skill 도구로 호출, 없거나 호출 실패 시 WebSearch로 폴백.
 
 결과:
-- 있음 -> 해당 도구 활용 가능
+- 있음 -> Skill(skill="docs-guide", args="...") / Skill(skill="deep-research", args="...") 활용
 - 없음 -> WebSearch로 폴백 (기본 동작에 문제 없음)
 ```
 
