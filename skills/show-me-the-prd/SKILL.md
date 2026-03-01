@@ -61,10 +61,9 @@ description: 인터뷰 기반 PRD 생성 스킬. "/show-me-the-prd", "PRD 만들
 
 **조건 A — $ARGUMENTS에 아이디어가 있는 경우:**
 
-**EXECUTE:** 아래 JSON으로 AskUserQuestion 도구를 즉시 호출한다 (Q1 스킵):
+아래 도구를 즉시 호출한다 (Q1 스킵):
 
-```json
-{
+AskUserQuestion({
   "questions": [
     {
       "question": "이 앱을 누가 쓸 건가요?",
@@ -98,15 +97,13 @@ description: 인터뷰 기반 PRD 생성 스킬. "/show-me-the-prd", "PRD 만들
       ]
     }
   ]
-}
-```
+})
 
 **조건 B — $ARGUMENTS가 없는 경우:**
 
-**EXECUTE:** 아래 JSON으로 AskUserQuestion 도구를 즉시 호출한다:
+아래 도구를 즉시 호출한다:
 
-```json
-{
+AskUserQuestion({
   "questions": [
     {
       "question": "어떤 문제를 해결하는 앱/서비스인가요?",
@@ -151,8 +148,7 @@ description: 인터뷰 기반 PRD 생성 스킬. "/show-me-the-prd", "PRD 만들
       ]
     }
   ]
-}
-```
+})
 
 **Step 1 완료 후**: 아이디어 요약을 유저에게 보여주고 맞는지 간단히 확인.
 
@@ -179,10 +175,9 @@ WebSearch: "{도메인} 앱 필수 기능"
 리서치 결과를 바탕으로 기능 목록을 AskUserQuestion의 옵션으로 직접 제시한다.
 텍스트로 먼저 안내하지 않는다.
 
-**EXECUTE:** 아래 JSON의 (동적) 필드를 리서치 결과로 채운 후 AskUserQuestion 도구를 즉시 호출한다:
+아래 도구의 (동적) 필드를 리서치 결과로 채운 후 즉시 호출한다:
 
-```json
-{
+AskUserQuestion({
   "questions": [
     {
       "question": "비슷한 앱들을 조사해봤어요. 꼭 필요한 기능을 골라주세요 (여러 개 선택 가능)",
@@ -207,8 +202,7 @@ WebSearch: "{도메인} 앱 필수 기능"
       ]
     }
   ]
-}
-```
+})
 
 - (동적) 표시된 필드는 리서치 결과로 실제 값을 채운다
 - 기능 설명은 각 option의 description에 포함 (별도 텍스트 출력 금지)
@@ -231,10 +225,9 @@ WebSearch: "{도메인} data model design"
 AI가 선택된 기능에서 핵심 데이터를 자동 추출하여 AskUserQuestion의 markdown preview로 직접 보여준다.
 텍스트로 먼저 설명하지 않는다.
 
-**EXECUTE:** 아래 JSON의 (동적) 필드를 추출된 데이터 모델로 채운 후 AskUserQuestion 도구를 즉시 호출한다:
+아래 도구의 (동적) 필드를 추출된 데이터 모델로 채운 후 즉시 호출한다:
 
-```json
-{
+AskUserQuestion({
   "questions": [
     {
       "question": "데이터 구조를 이렇게 잡았는데 괜찮아요? 오른쪽 미리보기에서 구조를 확인하세요.",
@@ -259,8 +252,7 @@ AI가 선택된 기능에서 핵심 데이터를 자동 추출하여 AskUserQues
       ]
     }
   ]
-}
-```
+})
 
 - (동적) 표시된 필드는 추출된 데이터 모델로 실제 값을 채운다
 - markdown preview에 ASCII 관계도 + 필드 테이블을 포함한다
@@ -273,10 +265,9 @@ AI가 선택된 기능에서 핵심 데이터를 자동 추출하여 AskUserQues
 AI가 기능 복잡도와 의존성을 기반으로 자동 Phase 분리 후 AskUserQuestion의 markdown preview로 직접 보여준다.
 텍스트로 먼저 설명하지 않는다.
 
-**EXECUTE:** 아래 JSON의 (동적) 필드를 Phase 분리 결과로 채운 후 AskUserQuestion 도구를 즉시 호출한다:
+아래 도구의 (동적) 필드를 Phase 분리 결과로 채운 후 즉시 호출한다:
 
-```json
-{
+AskUserQuestion({
   "questions": [
     {
       "question": "이렇게 나눠서 하나씩 완성하는 걸 추천해요. 오른쪽 미리보기에서 확인하세요.",
@@ -301,8 +292,7 @@ AI가 기능 복잡도와 의존성을 기반으로 자동 Phase 분리 후 AskU
       ]
     }
   ]
-}
-```
+})
 
 - (동적) 표시된 필드는 Phase 분리 결과로 실제 값을 채운다
 - markdown preview에 Phase별 기능 체크리스트를 포함한다
@@ -327,10 +317,9 @@ WebSearch: "{도메인} app deployment cost free tier 2026"
 
 리서치 기반으로 프로젝트에 맞는 기술 스택 2-3개를 추천한다.
 
-**EXECUTE:** 아래 JSON의 (동적) 필드를 리서치 결과로 채운 후 AskUserQuestion 도구를 즉시 호출한다:
+아래 도구의 (동적) 필드를 리서치 결과로 채운 후 즉시 호출한다:
 
-```json
-{
+AskUserQuestion({
   "questions": [
     {
       "question": "코드를 만들 때 어떤 도구를 쓸지 정해야 해요. 오른쪽 미리보기에서 비교해보세요.",
@@ -366,8 +355,7 @@ WebSearch: "{도메인} app deployment cost free tier 2026"
       ]
     }
   ]
-}
-```
+})
 
 - Q1: (동적) 필드는 리서치 결과로 실제 값을 채운다
 - Q1의 markdown preview에 스택 비교 테이블을 포함한다 (무료여부/AI호환/커뮤니티/배포난이도/확장성)
