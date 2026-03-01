@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.3.3] - 2026-03-02
+
+### Fixed
+- AskUserQuestion 도구 호출 보장을 위한 SKILL.md 전면 개선 (7가지 근본 원인 해결)
+  - 실행 앵커 강화: "WHEN TRIGGERED" 섹션을 구체적 실행 지시서(한국어)로 교체
+  - 모든 AskUserQuestion 블록에 "EXECUTE:" 명령형 키워드 적용 (Step 1-5 전체)
+  - Step 1 조건 분기 정리: "먼저 텍스트로 물어본 뒤" → Q0 주입 패턴으로 교체
+  - Step 2 "먼저 텍스트로 기능 목록" 제거 → AskUserQuestion 옵션에 포함
+  - Step 3 "텍스트로 데이터 구조 설명" 제거 → markdown 프리뷰로 대체
+  - Step 4 "텍스트로 Phase 설명" 제거 → markdown 프리뷰로 대체
+  - 모든 `{placeholder}` → `(동적: 설명)` 패턴으로 교체 (Step 2-5)
+  - 질문 설계 규칙 테이블의 부정형 지시 → 긍정형 "EXECUTE:" 참조로 변경
+
 ## [0.3.2] - 2026-03-02
 
 ### Fixed
