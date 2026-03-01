@@ -25,7 +25,7 @@ description: 인터뷰 기반 PRD 생성 스킬. "/show-me-the-prd", "PRD 만들
 | 복잡도 힌트 | 설명에 난이도 표시 ("간단해요", "좀 복잡해요", "많이 복잡해요") |
 | 열린 질문 최소화 | 첫 질문(뭘 만들고 싶어?) 하나만 열린 질문, 나머지 전부 선택형 |
 | 기타 옵션 불필요 | AskUserQuestion이 자동으로 "Other" 제공 |
-| 도구 호출 필수 | 모든 질문은 반드시 AskUserQuestion 도구를 호출한다. 아래 pseudo-code는 도구 파라미터의 가이드이다. 질문/옵션을 텍스트로 출력하면 안 된다 |
+| 도구 호출 필수 | 모든 질문은 반드시 AskUserQuestion 도구를 호출한다. 아래 JSON을 도구 파라미터로 그대로 사용한다. 질문/옵션을 텍스트로 출력하면 안 된다 |
 
 상세 인터뷰 방법론: `${CLAUDE_PLUGIN_ROOT}/skills/show-me-the-prd/references/interview-guide.md`
 
