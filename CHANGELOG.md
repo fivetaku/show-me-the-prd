@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.3.2] - 2026-03-02
+
+### Fixed
+- Command file Execute 섹션: "located at" 정보 제공 → 명시적 Read 지시로 변경
+  - SKILL.md + interview-guide.md 파일을 반드시 Read하도록 번호 리스트 추가
+  - AskUserQuestion 도구 호출 필수 규칙 명시
+  - 이 변경으로 SKILL.md가 로드되지 않아 AskUserQuestion이 텍스트로 출력되던 문제 해결
+
 ## [0.3.1] - 2026-03-02
 
 ### Fixed
