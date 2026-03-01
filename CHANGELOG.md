@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.3.1] - 2026-03-02
+
+### Fixed
+- AskUserQuestion pseudo-code 7개를 JSON 형식으로 전환 — 도구 호출 보장
+  - Step 1-5 질문 블록 전부 JSON 변환 + markdown preview 필드 추가
+
 ## [0.3.0] - 2026-02-25
 
 ### Changed
