@@ -61,7 +61,7 @@ description: 인터뷰 기반 PRD 생성 스킬. "/show-me-the-prd", "PRD 만들
 
 **조건 A — $ARGUMENTS에 아이디어가 있는 경우:**
 
-아래 도구를 즉시 호출한다 (Q1 스킵):
+**EXECUTE:** 아래 JSON으로 AskUserQuestion 도구를 즉시 호출한다 (Q1 스킵):
 
 AskUserQuestion({
   "questions": [
@@ -101,7 +101,7 @@ AskUserQuestion({
 
 **조건 B — $ARGUMENTS가 없는 경우:**
 
-아래 도구를 즉시 호출한다:
+**EXECUTE:** 아래 JSON으로 AskUserQuestion 도구를 즉시 호출한다:
 
 AskUserQuestion({
   "questions": [
@@ -175,7 +175,7 @@ WebSearch: "{도메인} 앱 필수 기능"
 리서치 결과를 바탕으로 기능 목록을 AskUserQuestion의 옵션으로 직접 제시한다.
 텍스트로 먼저 안내하지 않는다.
 
-아래 도구의 (동적) 필드를 리서치 결과로 채운 후 즉시 호출한다:
+**EXECUTE:** 아래 JSON의 (동적) 필드를 리서치 결과로 채운 후 AskUserQuestion 도구를 즉시 호출한다:
 
 AskUserQuestion({
   "questions": [
@@ -225,7 +225,7 @@ WebSearch: "{도메인} data model design"
 AI가 선택된 기능에서 핵심 데이터를 자동 추출하여 AskUserQuestion의 markdown preview로 직접 보여준다.
 텍스트로 먼저 설명하지 않는다.
 
-아래 도구의 (동적) 필드를 추출된 데이터 모델로 채운 후 즉시 호출한다:
+**EXECUTE:** 아래 JSON의 (동적) 필드를 추출된 데이터 모델로 채운 후 AskUserQuestion 도구를 즉시 호출한다:
 
 AskUserQuestion({
   "questions": [
@@ -265,7 +265,7 @@ AskUserQuestion({
 AI가 기능 복잡도와 의존성을 기반으로 자동 Phase 분리 후 AskUserQuestion의 markdown preview로 직접 보여준다.
 텍스트로 먼저 설명하지 않는다.
 
-아래 도구의 (동적) 필드를 Phase 분리 결과로 채운 후 즉시 호출한다:
+**EXECUTE:** 아래 JSON의 (동적) 필드를 Phase 분리 결과로 채운 후 AskUserQuestion 도구를 즉시 호출한다:
 
 AskUserQuestion({
   "questions": [
@@ -317,7 +317,7 @@ WebSearch: "{도메인} app deployment cost free tier 2026"
 
 리서치 기반으로 프로젝트에 맞는 기술 스택 2-3개를 추천한다.
 
-아래 도구의 (동적) 필드를 리서치 결과로 채운 후 즉시 호출한다:
+**EXECUTE:** 아래 JSON의 (동적) 필드를 리서치 결과로 채운 후 AskUserQuestion 도구를 즉시 호출한다:
 
 AskUserQuestion({
   "questions": [

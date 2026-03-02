@@ -3,7 +3,6 @@ name: show-me-the-prd
 description: "인터뷰 기반 PRD 생성 -- 한 문장에서 4종 디자인 문서까지"
 argument-hint: "[아이디어 설명]"
 allowed-tools:
-  - AskUserQuestion
   - Read
   - Write
   - WebSearch
