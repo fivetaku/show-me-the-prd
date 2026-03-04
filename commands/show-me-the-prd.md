@@ -27,8 +27,8 @@ allowed-tools:
 ## Turn 0: 사전 확인 (자동)
 
 Glob으로 플러그인 의존성을 확인한다 (유저에게 묻지 않음):
-- `~/.claude/plugins/cache/*/docs-guide` → 있으면 기술 문서 조사에 활용
-- `~/.claude/plugins/cache/*/deep-research` → 있으면 종합 리서치에 활용
+- `$HOME/.claude/plugins/cache/*/docs-guide` → 있으면 기술 문서 조사에 활용
+- `$HOME/.claude/plugins/cache/*/deep-research` → 있으면 종합 리서치에 활용
 - 둘 다 없으면 WebSearch 폴백
 
 ## Turn 1: 아이디어 분석 + 동적 질문
