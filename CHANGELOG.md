@@ -1,5 +1,46 @@
 # Changelog
 
+## [0.7.2] - 2026-03-15
+
+### Fixed
+- Step 3/4/5 AskUserQuestion markdown collapse ("N lines hidden") 문제 해결 — 긴 마크다운을 텍스트 출력 후 간단한 확인 AskUserQuestion으로 분리
+
+## [0.7.1] - 2026-03-14
+
+### Fixed
+- 크로스 플랫폼 경로 호환성 수정
+
+## [0.7.0] - 2026-03-12
+
+### Added
+- Turn 1 동적 질문 생성 — 아이디어 분석 기반으로 맞춤형 인터뷰 질문 자동 생성
+
+## [0.6.0] - 2026-03-10
+
+### Fixed
+- allowed-tools에서 AskUserQuestion 제거 — auto-approve로 UI가 렌더링되지 않던 버그 해결
+
+## [0.5.1] - 2026-03-08
+
+### Fixed
+- Turn 1 아이디어 분석 기반 동적 질문 + 전체 간결화
+- JSON 코드블록 제거, 자연어 Turn 기반 AskUserQuestion 패턴으로 전환
+
+## [0.5.0] - 2026-03-06
+
+### Changed
+- 커맨드 파일에 전체 워크플로우 인라인 — Step 1-5 AskUserQuestion 동작 확인
+
+## [0.4.1] - 2026-03-04
+
+### Fixed
+- AskUserQuestion JSON 코드블록 → 함수 호출 형식으로 변경
+
+## [0.4.0] - 2026-03-03
+
+### Fixed
+- AskUserQuestion 도구 호출 보장 및 markdown preview UX 개선
+
 ## [0.3.3] - 2026-03-02
 
 ### Fixed
