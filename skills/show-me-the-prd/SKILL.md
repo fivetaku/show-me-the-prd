@@ -188,11 +188,7 @@ WebSearch: "{도메인} data model design"
 
 AI가 선택된 기능에서 핵심 데이터를 자동 추출한다.
 
-> **절대 금지:** AskUserQuestion의 `markdown` 필드에 데이터 구조/테이블을 넣지 마. Claude Code에서 접혀서 안 보인다.
-
-**Step 3-1: 데이터 구조를 일반 텍스트로 출력**
-
-추출된 데이터 모델을 일반 텍스트로 출력한다. 아래 형식:
+데이터 구조는 AskUserQuestion의 `preview` 필드 또는 일반 텍스트로 보여준다. 아래 형식:
 
 ```
 핵심 데이터 구조:
@@ -242,11 +238,7 @@ AskUserQuestion({
 
 AI가 기능 복잡도와 의존성을 기반으로 자동 Phase 분리한다.
 
-> **절대 금지:** AskUserQuestion의 `markdown` 필드에 Phase 체크리스트를 넣지 마. Claude Code에서 접혀서 안 보인다.
-
-**Step 4-1: Phase 분리 결과를 일반 텍스트로 출력**
-
-Phase 분리 결과를 일반 텍스트로 출력한다. 아래 형식:
+Phase 분리 결과는 AskUserQuestion의 `preview` 필드 또는 일반 텍스트로 보여준다. 아래 형식:
 
 ```
 Phase 분리 계획:
@@ -320,11 +312,7 @@ WebSearch: "{도메인} app deployment cost free tier 2026"
 
 리서치 기반으로 프로젝트에 맞는 기술 스택 2-3개를 추천한다.
 
-> **절대 금지:** AskUserQuestion의 `markdown` 필드에 비교 테이블을 넣지 마. Claude Code에서 접혀서 안 보인다.
-
-**Step 5-1: 기술 스택 비교를 일반 텍스트로 출력**
-
-리서치 결과를 기반으로 비교 테이블을 일반 텍스트로 출력한다. 아래 형식:
+기술 스택 비교는 AskUserQuestion의 `preview` 필드 또는 일반 텍스트로 보여준다. 아래 형식:
 
 ```
 기술 스택 비교:

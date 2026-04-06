@@ -79,10 +79,10 @@ Use AskUserQuestion to ask the user:
 
 ## Turn 3: 데이터 모델 확인
 
-추출된 데이터 모델을 AskUserQuestion의 markdown preview로 보여준다. Do not explain in text.
+추출된 데이터 모델을 AskUserQuestion의 preview 필드로 보여준다. Do not explain in text.
 
-Use AskUserQuestion to ask the user (markdown preview 사용):
-- 옵션의 markdown 필드에 ASCII 관계도 + 필드 테이블 포함
+Use AskUserQuestion to ask the user (preview 필드 사용):
+- 옵션의 preview 필드에 ASCII 관계도 + 필드 테이블 포함
 - 좋아요 (추천) / 수정할 부분 있어요 / 잘 모르겠어요
 
 ## Turn 3 → Turn 4 전환
@@ -92,10 +92,10 @@ Use AskUserQuestion to ask the user (markdown preview 사용):
 
 ## Turn 4: Phase 분리 확인
 
-Phase 분리 결과를 AskUserQuestion의 markdown preview로 보여준다. Do not explain in text.
+Phase 분리 결과를 AskUserQuestion의 preview 필드로 보여준다. Do not explain in text.
 
-Use AskUserQuestion to ask the user (markdown preview 사용):
-- 옵션의 markdown 필드에 Phase별 기능 체크리스트 포함
+Use AskUserQuestion to ask the user (preview 필드 사용):
+- 옵션의 preview 필드에 Phase별 기능 체크리스트 포함
 - Phase 1 = MVP, Phase 2 = 확장, Phase 3 = 고도화
 - 좋아요 (추천) / 순서 변경 / Phase 합치기/나누기
 
@@ -109,7 +109,7 @@ Use AskUserQuestion to ask the user (markdown preview 사용):
 리서치 결과 기반으로 즉시 AskUserQuestion을 호출한다. Do not summarize findings in text.
 
 Use AskUserQuestion to ask the user:
-- (markdown preview 사용) 기술 스택 3개를 비교 테이블(무료여부/AI코딩 호환/커뮤니티/배포 난이도)로 보여줌
+- (preview 필드 사용) 기술 스택 3개를 비교 테이블(무료여부/AI코딩 호환/커뮤니티/배포 난이도)로 보여줌
 - 로그인 방식: 소셜 로그인 (추천) / 이메일+비밀번호 / 매직링크 / 불필요
 
 ## Turn 6: 문서 생성
