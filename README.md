@@ -51,15 +51,7 @@
 /plugin install show-me-the-prd
 ```
 
-### 3. 업데이트
-
-플러그인이 업데이트되면 아래 명령어로 최신 버전을 받을 수 있습니다:
-
-```
-/plugin update
-```
-
-> 설치/업데이트 후에는 Claude Code를 **재시작**하세요.
+> 설치 후에는 Claude Code를 **재시작**하세요.
 
 ### 사전 요구사항
 
