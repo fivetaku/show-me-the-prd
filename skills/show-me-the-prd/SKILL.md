@@ -1,6 +1,6 @@
 ---
 name: show-me-the-prd
-description: 인터뷰 기반 PRD 생성 스킬. "/show-me-the-prd", "PRD 만들어줘", "기획서 만들어줘", "쇼미더피알디", "앱 기획해줘", "서비스 기획" 같은 요청에 사용됩니다. 바이브코더를 위해 한 문장 아이디어에서 4종 디자인 문서(PRD, 데이터 모델, Phase 분리, 프로젝트 스펙)를 생성합니다.
+description: Interview-driven PRD generator for vibe coders — turns one sentence into 4 design documents (PRD, data model, phase separation, project spec) via 5-6 structured questions. Korean triggers: "/show-me-the-prd", "PRD 만들어줘", "기획서 만들어줘", "쇼미더피알디", "앱 기획해줘", "서비스 기획". English triggers: "make PRD", "product spec", "show me the PRD".
 ---
 
 # Show Me The PRD -- 인터뷰 기반 PRD 생성
