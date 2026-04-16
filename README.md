@@ -1,160 +1,165 @@
-# Show Me The PRD
+English | [한국어](README.ko.md)
 
-바이브코더를 위한 인터뷰 기반 PRD 생성기 -- 한 문장 아이디어에서 4종 디자인 문서까지.
+# show-me-the-prd
 
----
+> **Interview-driven PRD generator for vibe coders — from one sentence to 4 design documents.**
 
-## 이런 분을 위한 도구입니다
+Turn a single idea into a complete product plan. Answer 5–6 structured questions and get four design documents ready to hand off to any AI coding tool.
 
-- AI로 앱을 만들고 싶지만, 기획을 어떻게 해야 할지 모르는 분
-- "인보이싱 앱 만들어줘"라고 했더니 엉망진창이 나온 경험이 있는 분
-- 개발 경험 없이도 제대로 된 기획 문서를 만들고 싶은 분
-- AI에게 코드를 시킬 때 "이건 만들지 마" 규칙을 정해주고 싶은 분
+[Quick Start](#quick-start) • [Why show-me-the-prd](#why-show-me-the-prd) • [How it works](#how-it-works) • [Features](#features) • [Commands](#commands) • [Requirements](#requirements)
 
 ---
 
-## 어떻게 작동하나요?
+## Quick Start
 
-5-6번의 인터뷰 질문에 답하면 4종 디자인 문서가 자동 생성됩니다:
-
-1. **아이디어 탐색** -- 뭘 만들고 싶은지, 누가 쓸 건지 물어봐요
-2. **기능 정리** -- 비슷한 앱을 조사해서 기능 목록을 보여줘요. 복잡도도 알려줘요
-3. **데이터 구조** -- 앱에서 다루는 데이터를 자동으로 정리해요
-4. **단계 분리** -- 한 번에 다 만들지 않고, 단계별로 나눠요
-5. **기술 선택** -- 프로젝트에 맞는 기술 도구를 조사해서 추천해요
-6. **문서 생성** -- 4종 문서를 자동으로 만들어요
-
-```
-한 문장 아이디어 -> 인터뷰 (5-6번) -> 4종 문서 완성
-                                        ├── PRD (뭘 만드는지)
-                                        ├── 데이터 모델 (뭘 저장하는지)
-                                        ├── Phase 분리 (순서)
-                                        └── 프로젝트 스펙 (AI 규칙)
-```
-
-모든 질문에 **설명과 장단점**이 있어서, 개발 지식 없이도 고를 수 있어요.
-모르겠으면 **(추천)** 표시된 걸 고르면 돼요.
-
----
-
-## 설치 방법
-
-### 1. 마켓플레이스 등록 (처음 한 번만)
+### 1. Add the marketplace
 
 ```
 /plugin marketplace add https://github.com/fivetaku/gptaku_plugins.git
 ```
 
-### 2. 플러그인 설치
+### 2. Install the plugin
 
 ```
 /plugin install show-me-the-prd
 ```
 
-> 설치 후에는 Claude Code를 **재시작**하세요.
+### 3. Restart Claude Code
 
-### 사전 요구사항
+The plugin loads on session start — restart once after installing.
 
-없습니다. 바로 사용 가능합니다.
-
-리서치 품질을 높이려면 docs-guide, deep-research 플러그인을 함께 설치하세요 (선택).
-
-### 처음 시작하기
-```
-/show-me-the-prd 사진 정리 앱 만들고 싶어
-```
-
----
-
-## 핵심 기능
-
-### 1. 인터뷰 기반 기획
-
-개발 용어를 몰라도 돼요. 모든 질문에 설명과 장단점이 있어서 읽고 고르면 됩니다.
-"OAuth가 뭐예요?" 대신 "소셜 로그인(구글/카카오)으로 할까요?"라고 물어봐요.
-
-### 2. 실시간 웹 리서치
-
-하드코딩된 추천이 아니에요. 질문 사이사이에 실시간으로 웹을 검색해서 근거 있는 추천을 해요.
-docs-guide, deep-research 플러그인이 있으면 더 정확한 리서치가 가능해요.
-
-### 3. 4종 디자인 문서 자동 생성
-
-| 문서 | 내용 | AI에게 시킬 때 |
-|------|------|---------------|
-| PRD | 뭘 만드는지, 누가 쓰는지 | 프로젝트 시작할 때 공유 |
-| 데이터 모델 | 앱의 핵심 데이터 구조 | DB 설계할 때 공유 |
-| Phase 분리 | 단계별 개발 계획 | 개발 순서 정할 때 참고 |
-| 프로젝트 스펙 | AI 규칙 + "절대 하지 마" 목록 | **매번** AI에게 공유 |
-
-### 4. "진짜 제품" 지향
-
-로컬에서만 돌아가는 목업이 아니라, 실제 배포 가능한 수준의 기획을 해요.
-각 Phase마다 "실제 DB + 실제 인증 + 실제 배포" 체크리스트가 있어요.
-
-### 5. 복잡도 안내
-
-각 기능이 얼마나 복잡한지 알려줘요:
-- **간단해요** -- 대부분 바로 구현 가능
-- **좀 복잡해요** -- 외부 서비스 연동 필요
-- **많이 복잡해요** -- 첫 버전에서는 빼는 게 좋아요
-
----
-
-## 사용법
-
-| 명령어 | 설명 |
-|--------|------|
-| `/show-me-the-prd [아이디어]` | 인터뷰 시작하여 PRD 생성 |
-| `/show-me-the-prd` | 인터랙티브 메뉴 |
-
-### 자연어 트리거
-
-- "PRD 만들어줘"
-- "기획서 만들어줘"
-- "쇼미더피알디"
-- "앱 기획해줘"
-- "[아이디어] 기획해줘"
-
----
-
-## 산출물 구조
+### 4. Start planning
 
 ```
-PRD/
-├── 01_PRD.md              # Product Requirements Document
-├── 02_DATA_MODEL.md       # 데이터 모델 (개념적 ERD)
-├── 03_PHASES.md           # Phase 분리 계획 + 시작 프롬프트
-├── 04_PROJECT_SPEC.md     # 프로젝트 스펙 (AI 행동 규칙)
-└── README.md              # 네비게이션 가이드
+/show-me-the-prd I want to build a photo organization app
+```
+
+Or just say it naturally:
+
+```
+Make me a PRD for a task manager
 ```
 
 ---
 
-## 구성요소
+## Why show-me-the-prd?
 
-| 구성요소 | 설명 |
-|----------|------|
-| 커맨드 | `/show-me-the-prd` -- 메인 라우터 |
-| 스킬 | `show-me-the-prd` -- 7단계 인터뷰 기반 PRD 생성 워크플로우 |
-
----
-
-## 요구사항
-
-- Claude Code CLI
-
-### 권장 플러그인 (선택)
-
-리서치 품질을 높이려면 아래 플러그인을 함께 설치하세요:
-
-- **docs-guide** -- 공식 문서 기반 기술 조사에 활용
-- **deep-research** -- 종합 시장/트렌드 리서치에 활용
-
-없어도 기본 동작에 문제없어요. WebSearch로 대체합니다.
+- **No planning experience required** — Every question comes with plain-language explanations and tradeoffs, not jargon
+- **AI leads, you decide** — AI researches options in real time and presents them as choices; you never have to Google anything
+- **Research-backed, not guesswork** — Live web searches power the feature list, stack comparison, and complexity ratings
+- **Four documents, not one** — PRD, data model, phase plan, and AI project spec are generated together as a coherent set
+- **Production-oriented** — Each phase targets a real deployment with real auth and a real database, not a local mock
+- **Existing plans welcome** — Drop in an existing spec; the plugin identifies gaps and fills them in
 
 ---
 
-## 라이선스
+## How it works
+
+```
+One-sentence idea
+       |
+       v
+  [ Interview ]  ←── live web research runs between each question
+       |
+   Turn 1: clarify the idea (1–3 questions)
+   Turn 2: pick core features + MVP scope
+   Turn 3: confirm data model
+   Turn 4: confirm phase breakdown
+   Turn 5: choose tech stack + auth method
+       |
+       v
+  [ 4 Documents ]
+       |
+       +── PRD/01_PRD.md            What you're building and who it's for
+       +── PRD/02_DATA_MODEL.md     Core data structure (conceptual ERD)
+       +── PRD/03_PHASES.md         Phase plan with start prompts
+       +── PRD/04_PROJECT_SPEC.md   AI rules + "never do this" list
+       +── PRD/README.md            Navigation guide
+```
+
+Every option in the interview includes a plain-language description, pros, cons, and a complexity rating (Simple / Moderate / Complex). If you are unsure, pick the one marked **(recommended)**.
+
+---
+
+## Features
+
+### Interview-based planning
+
+No developer vocabulary required. Instead of "choose your auth strategy," it asks "how should users log in?" with concrete options like "social login (Google/Kakao)" and "email + password."
+
+### Real-time web research
+
+Between each interview turn, the plugin runs live searches to find relevant features, common pitfalls, and current best-practice stacks. What you see in the options is grounded in actual results, not hardcoded suggestions.
+
+### Complexity guidance
+
+Each feature in the feature-selection step is labeled:
+
+| Label | Meaning |
+|-------|---------|
+| Simple | Works out of the box with most frameworks |
+| Moderate | Requires an external service; some cost likely |
+| Complex | Recommended to skip in the first version |
+
+### Four output documents
+
+| Document | Contents | When to use |
+|----------|----------|-------------|
+| `01_PRD.md` | Product goals, user stories, feature list | Share at project start |
+| `02_DATA_MODEL.md` | Core entities and relationships | Share when designing the database |
+| `03_PHASES.md` | Phase-by-phase plan with start prompts | Reference for build order |
+| `04_PROJECT_SPEC.md` | AI behavior rules + "never do this" list | Share with AI on every session |
+
+### Enhancement mode
+
+If you already have a spec or notes, share them before running the command. The plugin reads them, identifies what is missing against the four-document standard, and runs only the questions needed to fill the gaps.
+
+---
+
+## Commands
+
+| Command | Description |
+|---------|-------------|
+| `/show-me-the-prd [idea]` | Start an interview with your idea inline |
+| `/show-me-the-prd` | Start with an interactive opening question |
+
+### Natural-language triggers
+
+The plugin also activates when you say:
+
+- "Make me a PRD"
+- "Create a planning document"
+- "Show me the PRD"
+- "Plan this app for me"
+- "Plan [idea] for me"
+
+---
+
+## Requirements
+
+- [Claude Code](https://docs.anthropic.com/claude-code) CLI
+
+### Optional plugins (recommended)
+
+Installing these alongside show-me-the-prd improves research quality:
+
+| Plugin | What it adds |
+|--------|-------------|
+| `docs-guide` | Official documentation lookups during tech stack research |
+| `deep-research` | Deeper market and trend analysis |
+
+The plugin works without them — it falls back to WebSearch automatically.
+
+---
+
+## License
 
 MIT
+
+---
+
+<div align="center">
+
+**One sentence in. Four documents out.**
+
+</div>
