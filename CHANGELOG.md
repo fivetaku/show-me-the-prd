@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.7.3] - 2026-05-04
+
+### Added
+- `references/domain-doc-sets.md` 신설 — 도메인별 4종 문서 카탈로그 (기본/B2B SaaS/1인 도구/이커머스/데이터/헬스케어/교육/콘텐츠 8 도메인)
+
+### Changed
+- `references/document-templates.md` 출력 구조 — 4종 floor는 사용자 예측가능성 본질로 유지, 문서 정의는 도메인별 가변 명시
+
+### Preserved
+- 4종 문서 강제 + README (사용자 예측가능성)
+- AskUserQuestion Other 자동 제공 (자유 escape hatch)
+- [NEEDS CLARIFICATION] 명시 (정직한 빈 칸)
+- Phase 1/2/3 골격 (워크플로우 일관성)
+
 ## [0.7.2] - 2026-03-15
 
 ### Fixed
