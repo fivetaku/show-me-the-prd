@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.7.4] - 2026-05-04
+
+### Changed
+- `references/domain-doc-sets.md`: 카탈로그(메뉴)에서 **동적 생성 가이드 + 참고 예시**로 프레이밍 전환
+  - 도메인 8개 enum 라벨 → 패턴 학습용 예시
+  - "동적 생성 절차" 섹션 강조 (4 차원: 요구사항 / 구조 / 도메인 특화 / AI 행동 규칙)
+  - "이 문서를 메뉴로 사용 금지" 명시
+- `references/document-templates.md` 사용 안내를 "선택/대체"에서 "예시 보고 즉석 정의"로 변경
+
+### Why
+v0.7.3의 domain-doc-sets.md 8 도메인 enum이 새 fossil 패턴이 됨.
+사용자 지적: 카탈로그에 없는 도메인은 fallback으로 강제 → 예시 + 동적 생성으로 전환.
+
 ## [0.7.3] - 2026-05-04
 
 ### Added
