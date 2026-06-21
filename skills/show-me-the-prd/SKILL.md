@@ -47,11 +47,11 @@ description: Interview-driven PRD generator for vibe coders — turns one senten
 플러그인 의존성을 확인한다. 없어도 동작하지만, 있으면 리서치 품질이 올라간다.
 
 1. **docs-guide 확인**: Glob으로 `$HOME/.claude/plugins/docs-guide` 또는 프로젝트 내 docs-guide 존재 여부 확인
-2. **deep-research 확인**: 동일하게 확인
+2. **insane-research 확인**: 동일하게 확인
 
 확인 결과를 내부적으로 기억한다 (유저에게 묻지 않음):
 - docs-guide 있음 -> 기술 문서 조사에 활용
-- deep-research 있음 -> 종합 리서치에 활용
+- insane-research 있음 -> 종합 리서치에 활용
 - 둘 다 없음 -> WebSearch로 폴백 (기본 동작에 문제 없음)
 
 ---

@@ -146,7 +146,7 @@ Installing these alongside show-me-the-prd improves research quality:
 | Plugin | What it adds |
 |--------|-------------|
 | `docs-guide` | Official documentation lookups during tech stack research |
-| `deep-research` | Deeper market and trend analysis |
+| `insane-research` | Deeper market and trend analysis |
 
 The plugin works without them — it falls back to WebSearch automatically.
 

@@ -31,7 +31,7 @@ allowed-tools:
 
 Glob으로 플러그인 의존성을 확인한다 (유저에게 묻지 않음):
 - `$HOME/.claude/plugins/cache/*/docs-guide` → 있으면 기술 문서 조사에 활용
-- `$HOME/.claude/plugins/cache/*/deep-research` → 있으면 종합 리서치에 활용
+- `$HOME/.claude/plugins/cache/*/insane-research` → 있으면 종합 리서치에 활용
 - 둘 다 없으면 WebSearch 폴백
 
 ## Turn 1: 핵심 문제 발굴 (Mom Test식 열린 질문)
