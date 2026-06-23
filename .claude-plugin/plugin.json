@@ -8,7 +8,7 @@
   },
   "homepage": "https://github.com/fivetaku/show-me-the-prd",
   "repository": "https://github.com/fivetaku/show-me-the-prd",
-  "license": "Apache-2.0",
+  "license": "MIT",
   "keywords": [
     "prd",
     "product-requirements",
