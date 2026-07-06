@@ -1,6 +1,10 @@
-English | [한국어](README.ko.md)
+English | [한국어](README.ko.md) | [中文](README.zh.md) | [日本語](README.ja.md) | [Español](README.es.md)
 
 # show-me-the-prd
+
+<p align="center">
+  <img src="assets/show-me-the-prd-hero-01.png" alt="show-me-the-prd" width="320">
+</p>
 
 > **Interview-driven PRD generator for vibe coders — from one sentence to 4 design documents.**
 

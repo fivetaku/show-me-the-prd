@@ -1,6 +1,10 @@
-[English](README.md) | 한국어
+[English](README.md) | 한국어 | [中文](README.zh.md) | [日本語](README.ja.md) | [Español](README.es.md)
 
 # show-me-the-prd
+
+<p align="center">
+  <img src="assets/show-me-the-prd-hero-01.png" alt="show-me-the-prd" width="320">
+</p>
 
 > **바이브코더를 위한 인터뷰 기반 PRD 생성기 — 한 문장 아이디어에서 4종 디자인 문서까지.**
 
