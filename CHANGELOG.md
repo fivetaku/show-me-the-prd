@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.9.0 — 2026-07-07
+
+### Changed — 인터뷰 구조를 선초안(Draft-First)으로 전면 재설계
+
+- **응답 5~6회 직렬 인터뷰 → 3회(열린 탐침 1 + 카드 2콜)로 축소.** 질문으로 사양을 다 채운 뒤 쓰는 게 아니라, 핵심 문제만 깊게 묻고 → 방향 결정 1콜(≤4문항 배치) → **즉시 4종 문서 초안** → 확인 카드 1콜로 간다.
+- 데이터 모델·Phase 분리는 **묻지 않고 설계해서 초안에 반영** — 확인은 초안 preview로 받는다 (백지 질문보다 구체물 교정이 정확하다는 A/B 검증 결과 반영).
+- **가정 원장(assumption ledger) 신설**: 미확정 지점은 시장 관행 기본값 채택 + `> ⚠️ 가정:` 블록 표시 + `01_PRD.md` 말미 `## 가정 원장` 목록. 확인 못 받은 항목은 납품 시 잔여 가정 목록으로 노출. `/goaljaby` 연계 시 검증 문서가 참조 가능.
+- **질문 예산 명문화**: 탐침 1회(재탐침 +1) + AskUserQuestion 2콜(콜당 ≤4문항). Turn 1 Mom Test 탐침과 §2a 조기 종료 금지는 그대로 유지.
+- 근거: gjc deep-interview 분석 + 히든 트루스 A/B 검증(사전 등록 기준 4/4 통과 — 포착 6.0 vs 5.0, 잔존오류 0.67 vs 2.0, 응답수 3.33 vs 5.33, 앵커링 미검출). 정책: shared/questioning-policy.md §6.
+
+### Added
+- README 5개 언어(en/ko/ja/zh/es) + 히어로 이미지 (0.8.5 이후 서브모듈에 선반영됨)
+
 ## 0.8.4 — 2026-06-21
 
 - The GitHub-star prompt is shown in the user's current language; on a fresh session with no language signal yet, it falls back to the language detected from your recent Claude sessions (else English).
