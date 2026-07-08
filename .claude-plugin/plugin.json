@@ -1,6 +1,6 @@
 {
   "name": "show-me-the-prd",
-  "version": "0.9.0",
+  "version": "0.10.0",
   "description": "Draft-first PRD generator — probe the real problem, draft 4 design documents immediately, confirm assumptions in one batch",
   "author": {
     "name": "fivetaku",

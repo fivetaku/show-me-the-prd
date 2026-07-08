@@ -48,6 +48,7 @@ description: Interview-driven PRD generator for vibe coders — turns one senten
 
 1. **docs-guide 확인**: Glob으로 `$HOME/.claude/plugins/docs-guide` 또는 프로젝트 내 docs-guide 존재 여부 확인
 2. **insane-research 확인**: 동일하게 확인
+3. **insane-search 확인**: 동일하게 확인 — 있으면 UI 산출물 기획 시 디자인 레퍼런스 수집에 활용 (게이트·절차: `references/design-reference-guide.md`. UI 없는 백엔드/CLI 기획에서는 발동하지 않음)
 
 확인 결과를 내부적으로 기억한다 (유저에게 묻지 않음):
 - docs-guide 있음 -> 기술 문서 조사에 활용

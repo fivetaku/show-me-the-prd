@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.10.0 — 2026-07-09
+
+### Added — 디자인 레퍼런스 수집 (UI 게이트 기반)
+
+- **Turn 2.5 신설**: UI 산출물(웹/앱/랜딩/대시보드) 기획일 때만 `{서비스 도메인}+{스타일}` 쿼리로 Dribbble/Cosmos 등에서 레퍼런스 이미지를 회수 → **비전 스크리닝**(Read로 직접 판정, 6~8장 중 3~5장 keep) → `PRD/references/` + `sources.json` 저장.
+- **UI 게이트**: 백엔드/CLI/라이브러리 기획은 스타일 문항·수집 전체를 자동 생략 (Turn 0에서 판정, 질문 추가 없음). 부분 UI는 사용자가 디자인을 먼저 언급한 경우만 발동.
+- Turn 2 카드에 **조건부 디자인 스타일 문항** (4문항 한도 유지 — 초과 시 플랫폼 확인을 원장으로).
+- `PRD/01_PRD.md`에 `## 디자인 방향` 섹션 — 스타일 키워드 + 레퍼런스 경로/출처 + 참고 포인트.
+- 사용자가 레퍼런스 URL을 직접 준 경우 수집 대신 기록, insane-design 설치 시 `/insane-design:analysis` 연계 안내.
+- 저작권 가드: 수집 이미지는 로컬 참고 전용, 산출물 재게시 금지 — sources.json `license_note` + PRD 명시.
+- 신규 참조: `skills/show-me-the-prd/references/design-reference-guide.md` (게이트 기준, 스타일 어휘 매핑, 소스 어댑터, 수집 절차, 스키마, 실패 처리).
+
 ## 0.9.0 — 2026-07-07
 
 ### Changed — 인터뷰 구조를 선초안(Draft-First)으로 전면 재설계

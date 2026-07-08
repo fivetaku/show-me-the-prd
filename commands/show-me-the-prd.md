@@ -41,7 +41,10 @@ If the output is empty, just continue silently. (AskUserQuestion must NOT be in 
 Glob으로 플러그인 의존성을 확인한다 (유저에게 묻지 않음):
 - `$HOME/.claude/plugins/cache/*/docs-guide` → 있으면 기술 문서 조사에 활용
 - `$HOME/.claude/plugins/cache/*/insane-research` → 있으면 종합 리서치에 활용
-- 둘 다 없으면 WebSearch 폴백
+- `$HOME/.claude/plugins/cache/*/insane-search` → 있으면 디자인 레퍼런스 수집(Turn 2.5)에 활용
+- 없으면 WebSearch/브라우저 폴백
+
+동시에 **UI 게이트**를 판정한다: $ARGUMENTS(+이후 Turn 1 답변)로 산출물에 사용자 화면(웹/앱/랜딩/대시보드)이 있는지 본다. 백엔드/CLI/파이프라인/라이브러리면 **UI 없음** — Turn 2의 스타일 문항과 Turn 2.5 전체를 생략한다. 부분 UI(예: API+간단 어드민)는 사용자가 디자인을 먼저 언급한 경우에만 UI 있음으로 취급. 판정 기준 상세: `${CLAUDE_PLUGIN_ROOT}/skills/show-me-the-prd/references/design-reference-guide.md`
 
 ## Turn 1: 핵심 문제 발굴 (Mom Test식 열린 질문)
 
@@ -69,6 +72,18 @@ Use AskUserQuestion to ask (한 번의 호출에 questions 배열로):
 2. **기술 방향** — 스택 후보. preview 필드에 비교표(무료여부/AI코딩 호환/커뮤니티/배포 난이도).
 3. **로그인 방식** — 소셜 (추천) / 이메일+비밀번호 / 매직링크 / 불필요.
 4. **플랫폼 확인** — 추론 결과를 기본값+확인형으로 ("모바일 웹으로 가정했어요 — 맞나요?"). 추론이 확실하면 이 문항은 빼고 원장에 기록.
+5. **디자인 스타일** *(UI 게이트 통과 시에만, 총 4문항 한도 내에서)* — 사용자가 스타일을 이미 말했거나 레퍼런스 URL을 줬으면 이 문항은 빼고 그대로 쓴다. 아니면 도메인에 어울리는 스타일 3~4개(미니멀 / 네오브루탈 / 다크 / 기타 — 각각 일상 언어 설명)를 옵션으로. 문항이 5개가 되면 우선순위 낮은 것(보통 4번 플랫폼 확인)을 원장으로 돌린다.
+
+## Turn 2.5: 디자인 레퍼런스 수집 (UI 게이트 통과 시에만, 질문 없음)
+
+UI 없음이면 이 단계를 통째로 건너뛰고 Turn 3으로 직행한다.
+
+UI 있음이면 카드 답의 스타일로 레퍼런스를 수집한다 — 절차 상세: Read `${CLAUDE_PLUGIN_ROOT}/skills/show-me-the-prd/references/design-reference-guide.md`
+- 쿼리 = `{서비스 도메인} + {스타일}` (영문 변환) → Dribbble/Cosmos 등에서 이미지 6~8장 회수
+- **비전 스크리닝 필수**: Read로 이미지를 직접 열어 스타일·도메인·화면종류(모바일/데스크톱) 부합을 판정, 상위 3~5장만 keep
+- `PRD/references/`에 이미지 + `sources.json`(출처·라이선스 노트) 저장
+- 사용자가 레퍼런스 URL을 직접 준 경우: 수집 대신 그 URL을 sources.json에 기록
+- 전 소스 실패 시: 막지 말고 가정 원장에 "레퍼런스 미수집" 기록 후 진행
 
 ## Turn 3: 초안 작성 (질문 없음)
 
@@ -83,6 +98,7 @@ Use AskUserQuestion to ask (한 번의 호출에 questions 배열로):
 
 **핵심 규칙:**
 - **데이터 모델과 Phase 분리는 묻지 않고 설계해서 초안에 반영한다.** (확인은 Turn 4에서 구체물로 받는다 — 백지 질문보다 초안 교정이 정확하다는 게 A/B 검증 결과다.)
+- **레퍼런스 연결 (Turn 2.5 실행 시)**: `PRD/01_PRD.md`에 `## 디자인 방향` 섹션을 추가 — 스타일 키워드 + keep한 레퍼런스 파일 경로/출처 링크 + 각 이미지에서 참고할 포인트 한 줄. "레퍼런스는 방향 합의용, 산출물에 재게시 금지" 한 줄 명시.
 - 미확정 지점 처리 (§6c):
   - 산출물 구조를 갈라놓는 **blocking 결정** → 질문 큐에 적립 (Turn 4 카드에 합류)
   - 그 외 → **시장 일반 관행 기준 기본값** 채택 + 가정 원장에 기록
@@ -104,4 +120,4 @@ Use AskUserQuestion to ask (한 번의 호출에 questions 배열로):
 교정 반영 후 마무리:
 - 완성도 X/10 + 개선 포인트
 - **잔여 가정 목록** — 확인받지 못한 원장 항목을 그대로 노출한다 (사용자가 나중에 훑고 고칠 수 있게. 어떤 인터뷰로도 못 잡는 잠재 항목의 유일한 방어선이다.)
-- 문서 위치 + 다음 단계 가이드 (골 기반 실행이 필요하면 `/goaljaby`로 이 PRD 폴더를 넘기라고 안내 — 가정 원장은 goaljaby의 검증 문서가 참조할 수 있다)
+- 문서 위치 + 다음 단계 가이드 (골 기반 실행이 필요하면 `/goaljaby`로 이 PRD 폴더를 넘기라고 안내 — 가정 원장과 `PRD/references/`는 goaljaby가 골 컨텍스트로 승계한다. 레퍼런스 URL을 받은 경우 insane-design 설치 시 `/insane-design:analysis <URL>`로 CSS 수준 분석이 가능함도 한 줄 안내)
