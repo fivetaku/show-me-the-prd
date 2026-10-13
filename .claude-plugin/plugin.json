@@ -1,6 +1,6 @@
 {
   "name": "show-me-the-prd",
-  "version": "0.10.1",
+  "version": "0.10.2",
   "description": "Draft-first PRD generator — probe the real problem, draft 4 design documents immediately, confirm assumptions in one batch",
   "author": {
     "name": "fivetaku",
@@ -17,5 +17,8 @@
     "design-document",
     "data-model",
     "phase-planning"
+  ],
+  "dependencies": [
+    "gptaku-core"
   ]
 }
