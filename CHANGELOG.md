@@ -1,6 +1,9 @@
 # Changelog
 
 
+## 0.10.2 — 2026-10-13
+- **Routed through gptaku-core.** Declares `gptaku-core` as a dependency and adds `routing.json`, so requests that match this plugin's skills are pointed to them before Claude handles the work itself or reaches for native tools. Existing users: run `/reload-plugins` after updating, or reinstall the plugin, so gptaku-core gets installed. Opt out with `GPTAKU_ROUTER=off`.
+
 ## 0.10.1 — 2026-08-24
 
 - **Fix: first-run setup could wipe `settings.json`** — if the file was corrupted or contained comments (JSONC), the shared update-notifier installer re-wrote it as an empty object plus the hook, silently destroying all user settings. It now refuses to write when parsing fails and writes atomically (tmp + rename). Marketplace-wide propagation of the fix found in the ddiring v0.1.1 external review; reproduction-verified.
