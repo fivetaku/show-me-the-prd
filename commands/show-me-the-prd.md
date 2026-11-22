@@ -61,7 +61,7 @@ $ARGUMENTS가 없으면 "어떤 문제 때문에 이 앱/서비스를 생각하�
 
 ## Turn 1 → Turn 2 전환
 
-답변을 받으면 WebSearch로 "{아이디어} app features best practices 2026" + "best tech stack for {플랫폼} {도메인} app 2026" 리서치. 텍스트로 설명하지 말고 즉시 Turn 2의 카드를 호출한다.
+답변을 받으면 WebSearch로 "{아이디어} app features best practices {현재 연도}" + "best tech stack for {플랫폼} {도메인} app {현재 연도}" 리서치(연도는 실행 시점 값 — 쿼리 패턴: `${CLAUDE_PLUGIN_ROOT}/skills/show-me-the-prd/references/research-strategy.md`). 텍스트로 설명하지 말고 즉시 Turn 2의 카드를 호출한다.
 
 ## Turn 2: 방향 결정 카드 (AskUserQuestion 1콜, ≤4문항)
 
@@ -87,12 +87,16 @@ UI 있음이면 카드 답의 스타일로 레퍼런스를 수집한다 — 절�
 
 ## Turn 3: 초안 작성 (질문 없음)
 
-카드 답을 받으면 **즉시** PRD/ 폴더에 5개 파일을 Write한다:
+카드 답을 받으면 **즉시** PRD/ 폴더에 파일을 Write한다.
+
+**짧은 경로**: 기능이 3개 이하이거나 버그 수정 하나·작은 도구 하나면 `PRD/01_PRD.md`(한 장 PRD) + `PRD/README.md` 2개만 쓴다. 작은 일에 문서 다섯 장은 핵심을 흐린다. 판정은 묻지 않고 가정 원장에 한 줄로 남긴다. 그 밖에는 5개 파일:
 - `PRD/01_PRD.md` — Product Requirements Document
 - `PRD/02_DATA_MODEL.md` — 데이터 모델
 - `PRD/03_PHASES.md` — Phase 분리 계획 (Phase 1 = MVP, Phase 2 = 확장, Phase 3 = 고도화)
 - `PRD/04_PROJECT_SPEC.md` — 프로젝트 스펙 (AI 행동 규칙)
 - `PRD/README.md` — 네비게이션
+
+도메인이 뚜렷하면 02·03의 이름과 내용은 `${CLAUDE_PLUGIN_ROOT}/skills/show-me-the-prd/references/domain-doc-sets.md` 규칙으로 정하고, 따로 묻지 않고 가정 원장에 기록한다.
 
 문서 템플릿: Read `${CLAUDE_PLUGIN_ROOT}/skills/show-me-the-prd/references/document-templates.md`
 
@@ -102,7 +106,8 @@ UI 있음이면 카드 답의 스타일로 레퍼런스를 수집한다 — 절�
 - 미확정 지점 처리 (§6c):
   - 산출물 구조를 갈라놓는 **blocking 결정** → 질문 큐에 적립 (Turn 4 카드에 합류)
   - 그 외 → **시장 일반 관행 기준 기본값** 채택 + 가정 원장에 기록
-- **가정 원장 규약**: 가정이 반영된 문서 위치마다 `> ⚠️ 가정: {내용} — 아니라면 알려주세요` 인용 블록을 넣고, `PRD/01_PRD.md` 말미에 `## 가정 원장` 섹션으로 전체 목록(번호 / 가정 내용 / 영향 문서 / 확인 여부)을 모은다.
+- **가정 원장 규약**: 가정이 반영된 문서 위치마다 `> ⚠️ 가정 A-03: {내용} — 아니라면 알려주세요` 인용 블록을 넣고, `PRD/01_PRD.md` 말미의 `## 가정 원장`(# / 가정 / 등급 blocking·non-blocking / 근거 / 영향 문서 / 확인 방법 / 상태)과 `## 미결 질문`에만 모은다. 다른 문서에 미결 섹션을 따로 만들지 않는다 — 두 곳이 어긋나면 에이전트가 어느 쪽을 따를지 모른다.
+- **완료 판정 가능성**: 기능마다 `F-xx` ID와 Given/When/Then 인수 기준 `AC-xx.y`(체크박스), Phase마다 `종료 조건:`(검증 명령 + 시연할 AC), 04에 검증 명령·완료 정의를 넣는다. 받는 쪽(코딩 에이전트, goaljaby)이 끝났는지 스스로 판단하는 근거다.
 
 ## Turn 4: 확인 카드 (AskUserQuestion 1콜, ≤4문항)
 
@@ -110,14 +115,15 @@ UI 있음이면 카드 답의 스타일로 레퍼런스를 수집한다 — 절�
 
 Use AskUserQuestion to ask (한 번의 호출에 questions 배열로):
 1. **데이터 모델** — preview 필드에 ASCII 관계도 + 필드 테이블. 좋아요 (추천) / 수정할 부분 있어요.
-2. **Phase 분리** — preview 필드에 Phase별 기능 체크리스트. 좋아요 (추천) / 순서 변경 / 합치기·나누기.
+2. **Phase 분리** — preview 필드에 Phase별 포함 기능(F ID)과 종료 조건. 좋아요 (추천) / 순서 변경 / 합치기·나누기.
 3~4. **가정 원장에서 틀렸을 때 영향이 큰 가정 1~2개** + Turn 3에서 적립된 blocking 큐 항목. 각각 기본값을 첫 옵션(추천)으로.
+
+짧은 경로였다면 1·2 대신 인수 기준 목록 확인과 원장 가정으로 채운다.
 
 수정 답변은 해당 문서에 반영하고 원장의 확인 여부를 갱신한다. 수정이 연쇄적으로 커지는 경우에만(구조 변경) 추가 확인 1회를 예외 허용한다.
 
 ## Turn 5: 납품
 
 교정 반영 후 마무리:
-- 완성도 X/10 + 개선 포인트
 - **잔여 가정 목록** — 확인받지 못한 원장 항목을 그대로 노출한다 (사용자가 나중에 훑고 고칠 수 있게. 어떤 인터뷰로도 못 잡는 잠재 항목의 유일한 방어선이다.)
 - 문서 위치 + 다음 단계 가이드 (골 기반 실행이 필요하면 `/goaljaby`로 이 PRD 폴더를 넘기라고 안내 — 가정 원장과 `PRD/references/`는 goaljaby가 골 컨텍스트로 승계한다. 레퍼런스 URL을 받은 경우 insane-design 설치 시 `/insane-design:analysis <URL>`로 CSS 수준 분석이 가능함도 한 줄 안내)

@@ -8,14 +8,14 @@
 |------|----------|----------|------|
 | 공식 문서 기반 기술 조사 | docs-guide 스킬 | 플러그인 설치됨 | "Next.js App Router 캐싱" |
 | 종합 리서치 (시장, 트렌드) | insane-research 스킬 | 플러그인 설치됨 | "인보이싱 앱 시장 조사" |
-| 빠른 검색 (가격, 비교, 팩트) | WebSearch (빌트인) | 항상 사용 가능 | "Supabase 무료 용량 2026" |
+| 빠른 검색 (가격, 비교, 팩트) | WebSearch (빌트인) | 항상 사용 가능 | "Supabase 무료 용량 {현재 연도}" |
 | 페이지 내용 추출 | WebFetch (빌트인) | 항상 사용 가능 | 특정 URL의 가격표 확인 |
 
 ---
 
 ## 플러그인 의존성 확인 방법
 
-Phase 0에서 자동 확인. 유저에게 묻지 않고 내부적으로 기억.
+Turn 0에서 자동 확인. 유저에게 묻지 않고 내부적으로 기억.
 
 ```
 확인 방법:
@@ -23,7 +23,7 @@ Phase 0에서 자동 확인. 유저에게 묻지 않고 내부적으로 기억.
 있으면 Skill 도구로 호출, 없거나 호출 실패 시 WebSearch로 폴백.
 
 결과:
-- 있음 -> Skill(skill="docs-guide", args="...") / Skill(skill="insane-research", args="...") 활용
+- 있음 -> Skill(skill="docs-guide:docs-guide", args="...") / Skill(skill="insane-research:insane-research", args="...") 활용
 - 없음 -> WebSearch로 폴백 (기본 동작에 문제 없음)
 ```
 
@@ -41,7 +41,7 @@ Phase 0에서 자동 확인. 유저에게 묻지 않고 내부적으로 기억.
 
 "사진 앱 시장 규모와 트렌드"
   -> insane-research (멀티소스 종합 리서치)
-  -> 폴백: WebSearch("{domain} market size trends 2026")
+  -> 폴백: WebSearch("{domain} market size trends {현재 연도}")
 
 "Supabase Storage 무료 용량"
   -> WebSearch (빠른 팩트 체크)
@@ -64,82 +64,65 @@ Phase 0에서 자동 확인. 유저에게 묻지 않고 내부적으로 기억.
 
 ## 리서치 배치 오케스트레이션
 
-리서치를 아무 때나 하면 유저가 기다려야 한다. **인터뷰 사이사이 빈 시간에 배치**한다.
+리서치를 아무 때나 하면 사용자가 기다린다. 명령(`commands/show-me-the-prd.md`)의 Turn 사이 빈 시간에 배치한다.
 
 ### 배치 타이밍
 
 | 배치 | 타이밍 | 목적 | 도구 |
 |------|--------|------|------|
-| Batch 1 | Step 1 답변 직후 | 시장/경쟁 빠른 파악 | WebSearch |
-| Batch 2 | Step 2 기능 선택 직후 | 기능별 기술 난이도 확인 | WebSearch + docs-guide |
-| Batch 3 | Step 4 Phase 확인 후 | 모던 스택 비교, 공식문서 | docs-guide + WebSearch |
-| Batch 4 | Step 5 스택 선택 후 | 프로젝트 구조, 배포 가이드 | docs-guide |
-| (선택) | 유저 요청 시 | 깊은 시장 조사 | insane-research |
+| Batch 1 | Turn 1 답변 직후 (Turn 2 카드 전) | 시장·경쟁, 흔한 기능, 스택 후보 — Turn 2 카드 옵션의 근거 | WebSearch |
+| Batch 2 | Turn 2 카드 답 직후 (Turn 3 초안 전) | 선택한 스택의 현재 버전·공식 스캐폴드 구조·검증 명령·배포, 도메인 보안 주의 | docs-guide + WebSearch/WebFetch |
+| (UI 있을 때) | Turn 2.5 | 디자인 레퍼런스 수집 | insane-search 등 (`design-reference-guide.md`) |
+| (선택) | 사용자 요청 시 | 깊은 시장 조사 | insane-research |
 
 ### 배치 원칙
 
 | 원칙 | 설명 |
 |------|------|
-| 유저 대기 시간 = 0 | 리서치는 유저가 답변한 직후 or AI 처리 중에 병렬 실행 |
-| 다음 질문에 반영 | 리서치 결과가 바로 다음 질문의 선택지/설명에 녹아듦 |
-| 점진적 구체화 | 처음엔 넓게(WebSearch), 나중엔 깊게(docs-guide) |
-| insane-research는 선택적 | 시장 조사가 필요한 경우에만. 기본 흐름에서는 WebSearch + docs-guide로 충분 |
-| 캐싱 | 같은 주제 중복 검색 방지. 배치 1 결과를 배치 2-4에서 재활용 |
+| 사용자 대기 시간 = 0 | 사용자가 답한 직후, 다음 카드를 만드는 동안 실행 |
+| 다음 카드에 반영 | 결과는 설명하지 않고 바로 다음 카드의 옵션·설명에 녹인다 |
+| 점진적 구체화 | 처음엔 넓게(WebSearch), 스택이 정해진 뒤엔 깊게(docs-guide) |
+| insane-research는 선택적 | 오래 걸린다. 기본 흐름은 WebSearch + docs-guide로 충분 |
+| 재활용 | Batch 1 결과를 Batch 2와 초안에서 다시 쓴다. 같은 주제 중복 검색 금지 |
 
 ---
 
 ## 배치별 검색 쿼리 패턴
 
-### Batch 1: 아이디어 직후 (시장 파악)
+`{현재 연도}`는 실행 시점의 연도로 바꾼다. 연도를 문서에 고정해 두면 해가 바뀐 뒤 낡은 결과를 끌어온다.
+
+### Batch 1: Turn 1 직후 (시장·스택 후보)
 
 ```
-WebSearch: "{도메인} app features 2026"
+WebSearch: "{도메인} app features best practices {현재 연도}"
 WebSearch: "{유사 서비스명} 불만 사항 대안 앱"
-WebSearch: "{도메인} 앱 필수 기능 목록"
+WebSearch: "best tech stack for {플랫폼} {도메인} app {현재 연도}"
+WebSearch: "{DB 후보} free tier pricing {현재 연도}"
 ```
 
-목적: Step 2에서 "이런 기능들이 일반적이에요" 목록을 근거 있게 제시.
+목적: Turn 2의 MVP 범위 조합과 기술 방향 비교표를 근거 있게 만든다.
 
-### Batch 2: 기능 선택 직후 (기술 조사)
-
-```
-docs-guide: "{핵심 기능} implementation best practice"
-WebSearch: "{핵심 기능} 구현 난이도 비용"
-WebSearch: "{도메인} data model design pattern"
-```
-
-목적: Step 3 데이터 모델 자동 추출의 근거. 기능별 복잡도 판단.
-
-### Batch 3: 기술 스택 선택 전 (스택 비교)
+### Batch 2: Turn 2 직후 (초안 보강)
 
 ```
-WebSearch: "best tech stack for {플랫폼} {도메인} app 2026"
-WebSearch: "{프레임워크A} vs {프레임워크B} 2026 comparison"
-docs-guide: "{후보 프레임워크} getting started tutorial"
-WebSearch: "{DB 후보} free tier pricing 2026"
+WebFetch/레지스트리: "{선택한 패키지}" 현재 안정판 버전
+docs-guide: "{선택한 프레임워크} create project / recommended structure"
+docs-guide: "{선택한 프레임워크} testing and e2e setup"
+WebSearch: "{선택한 스택} deployment guide {현재 연도}"
+WebSearch: "{도메인} 앱 보안·개인정보 주의사항"
 ```
 
-목적: Step 5에서 리서치 기반 2-3개 추천 근거.
-
-### Batch 4: 문서 생성 전 (구조 보강)
-
-```
-docs-guide: "{선택된 프레임워크} project structure recommended"
-WebSearch: "{선택된 스택} deployment guide 2026"
-WebSearch: "{도메인} 앱 보안 규정 주의사항"
-```
-
-목적: Step 6 문서에 구체적인 프로젝트 구조와 배포 가이드 포함.
+목적: 04_PROJECT_SPEC의 버전(기억이 아닌 확인 값), 스택에서 나온 프로젝트 구조, 검증 명령, 배포 절차, 비기능·보안 항목을 채운다. 버전을 확인하지 못하면 "착수 시 확인"으로 둔다.
 
 ---
 
 ## 검색 쿼리 규칙
 
-1. **항상 현재 연도 포함**: "React vs Vue" (X) -> "React vs Vue 2026" (O)
-2. **영어 + 한국어 병행**: 영어 쿼리가 결과 품질 높음. 한국어 쿼리로 로컬 정보 보완.
-3. **구체적 질문**: "best framework" (X) -> "best framework for photo sharing web app 2026" (O)
-4. **비교 쿼리**: "X vs Y comparison 2026 pros cons"
-5. **가격 쿼리**: "{서비스} pricing free tier 2026"
+1. **현재 연도 포함**: "React vs Vue" (X) -> "React vs Vue {현재 연도}" (O)
+2. **영어 + 한국어 병행**: 영어 쿼리가 결과 품질이 높고, 한국어 쿼리로 로컬 정보를 보완한다.
+3. **구체적으로**: "best framework" (X) -> "best framework for photo sharing web app {현재 연도}" (O)
+4. **비교**: "X vs Y comparison {현재 연도} pros cons"
+5. **가격**: "{서비스} pricing free tier {현재 연도}"
 
 ---
 
@@ -160,10 +143,10 @@ WebSearch: "{도메인} 앱 보안 규정 주의사항"
 
 ```
 # docs-guide 호출
-Skill(skill="docs-guide", args="Next.js App Router 프로젝트 구조")
+Skill(skill="docs-guide:docs-guide", args="Next.js App Router 프로젝트 구조")
 
 # insane-research 호출
-Skill(skill="insane-research", args="인보이싱 앱 시장 분석")
+Skill(skill="insane-research:insane-research", args="인보이싱 앱 시장 분석")
 ```
 
 **주의**: insane-research는 시간이 오래 걸린다. 기본 흐름에서는 WebSearch로 충분하고, 유저가 명시적으로 시장 조사를 원할 때만 사용.
