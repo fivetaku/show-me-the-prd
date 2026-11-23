@@ -28,6 +28,8 @@ Turn a single idea into a complete product plan. Answer 5–6 structured questio
 /plugin install show-me-the-prd
 ```
 
+Codex: `codex plugin marketplace add fivetaku/gptaku_plugins`, then `codex plugin add show-me-the-prd@gptaku-plugins`.
+
 ### 3. Restart Claude Code
 
 The plugin loads on session start — restart once after installing.

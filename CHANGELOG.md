@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.12.0 — 2026-11-23
+- 같은 스킬로 Codex에서도 동작: 실제 절차를 SKILL.md로 옮기고 명령은 얇게 정리, `references/codex.md`에 Codex 질문 도구 순서·프리뷰 처리 추가
+- 선초안 흐름 문서 정합: interview-guide를 Turn 기준으로 정리, 납품 완성도 점수와 기존 기획 보강(Enhancement) 모드를 SKILL.md에 반영
+
 
 ## 0.11.0 — 2026-11-22
 - Feature IDs with Given/When/Then acceptance criteria
